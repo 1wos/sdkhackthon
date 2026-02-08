@@ -2,7 +2,6 @@
 
 <p align="center">
   <img src="./screenshots/logo.png" width="120" alt="Reddit Deep-Dive Analyst" />
-  <img src="https://fluentdeck.vercel.app/emoji/png/animated/nerd_face_animated.png" width="80" alt="nerd" />
 </p>
 
 <p align="center">
