@@ -1,0 +1,298 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-highlight: var(--highlight);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Dark mode (default) */
+:root,
+.dark {
+  --radius: 0.625rem;
+  --background: oklch(0.145 0.005 285);
+  --foreground: oklch(0.95 0.005 285);
+  --card: oklch(0.185 0.008 285);
+  --card-foreground: oklch(0.95 0.005 285);
+  --popover: oklch(0.185 0.008 285);
+  --popover-foreground: oklch(0.95 0.005 285);
+  --primary: oklch(0.72 0.18 45);
+  --primary-foreground: oklch(0.15 0 0);
+  --secondary: oklch(0.22 0.008 285);
+  --secondary-foreground: oklch(0.92 0.005 285);
+  --muted: oklch(0.22 0.008 285);
+  --muted-foreground: oklch(0.65 0.01 285);
+  --accent: oklch(0.25 0.01 285);
+  --accent-foreground: oklch(0.95 0.005 285);
+  --destructive: oklch(0.65 0.2 25);
+  --border: oklch(0.26 0.01 285);
+  --input: oklch(0.22 0.008 285);
+  --ring: oklch(0.72 0.18 45);
+  --highlight: oklch(0.35 0.02 285);
+}
+
+/* Light mode */
+.light {
+  --radius: 0.625rem;
+  --background: oklch(0.98 0.002 285);
+  --foreground: oklch(0.15 0.005 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.005 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.005 285);
+  --primary: oklch(0.65 0.2 45);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.94 0.005 285);
+  --secondary-foreground: oklch(0.2 0.005 285);
+  --muted: oklch(0.94 0.005 285);
+  --muted-foreground: oklch(0.45 0.01 285);
+  --accent: oklch(0.94 0.005 285);
+  --accent-foreground: oklch(0.15 0.005 285);
+  --destructive: oklch(0.55 0.22 25);
+  --border: oklch(0.88 0.005 285);
+  --input: oklch(0.88 0.005 285);
+  --ring: oklch(0.65 0.2 45);
+  --highlight: oklch(0.92 0.01 285);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+html,
+body,
+:root {
+  height: 100%;
+}
+
+/* Subtle grid background pattern */
+.dark .bg-grid {
+  background-image:
+    linear-gradient(to right, oklch(0.25 0.01 285 / 0.3) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.25 0.01 285 / 0.3) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.light .bg-grid {
+  background-image:
+    linear-gradient(to right, oklch(0.85 0.005 285 / 0.5) 1px, transparent 1px),
+    linear-gradient(to bottom, oklch(0.85 0.005 285 / 0.5) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Gradient glow effects */
+.glow-orange {
+  box-shadow: 0 0 60px -10px oklch(0.72 0.18 45 / 0.15);
+}
+
+/* User message styling - refined with accent */
+.dark .user-message-border {
+  background: linear-gradient(
+    135deg,
+    oklch(0.72 0.18 45 / 0.3),
+    oklch(0.26 0.01 285),
+    oklch(0.72 0.18 45 / 0.15)
+  );
+}
+.light .user-message-border {
+  background: linear-gradient(
+    135deg,
+    oklch(0.65 0.2 45 / 0.2),
+    oklch(0.88 0.005 285),
+    oklch(0.65 0.2 45 / 0.1)
+  );
+}
+
+.user-message-shadow {
+  --highlight-shadow:
+    0 8px 24px -6px oklch(0.72 0.18 45 / 0.08),
+    0 2px 8px -2px oklch(0 0 0 / 0.3);
+  box-shadow:
+    var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+    var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow),
+    var(--highlight-shadow);
+}
+
+/* Shimmer animation - now with orange accent */
+.dark .shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.65 0.01 285) 25%,
+    oklch(0.72 0.18 45) 50%,
+    oklch(0.65 0.01 285) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.light .shimmer {
+  background: linear-gradient(
+    90deg,
+    oklch(0.45 0.01 285) 25%,
+    oklch(0.65 0.2 45) 50%,
+    oklch(0.45 0.01 285) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite linear;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Blinking animation for tool status */
+.animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+/* Fade in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+/* Gradient text for headings */
+.dark .gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.95 0.005 285),
+    oklch(0.72 0.18 45),
+    oklch(0.75 0.15 30)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.light .gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(0.2 0.005 285),
+    oklch(0.6 0.22 45),
+    oklch(0.55 0.2 30)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark ::-webkit-scrollbar-thumb,
+.dark::-webkit-scrollbar-thumb {
+  background: oklch(0.3 0.01 285);
+  border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover,
+.dark::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.4 0.01 285);
+}
+
+.light ::-webkit-scrollbar-thumb,
+.light::-webkit-scrollbar-thumb {
+  background: oklch(0.8 0.005 285);
+  border-radius: 3px;
+}
+
+.light ::-webkit-scrollbar-thumb:hover,
+.light::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.7 0.005 285);
+}
+
+/* Slide up animation for download popup */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Progress bar shimmer */
+@keyframes shimmer-bar {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+.animate-shimmer-bar {
+  animation: shimmer-bar 2s ease-in-out infinite;
+}

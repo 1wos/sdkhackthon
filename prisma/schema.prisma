@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Conversation {
+  id           String   @id @default(cuid())
+  title        String?                   // First user message as preview
+  status       String   @default("idle") // idle, running, completed, error
+  volumeId     String?                   // Moru volume ID
+  sandboxId    String?                   // Current sandbox ID (null when not running)
+  sessionId    String?                   // Claude Code session ID for resume
+  errorMessage String?                   // Error message if status=error
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
